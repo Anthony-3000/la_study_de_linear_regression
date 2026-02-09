@@ -1,0 +1,1 @@
+# to implement, analyze, and compare various linear regression models including simple linear regression, multiple linea regression, polynomial regression, and regularization techniques.
