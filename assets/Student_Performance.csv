@@ -1,4 +1,4 @@
-,Student_ID,Attendance_Percent,Assignment_Score,Midterm_Score,Final_Exam_Score,Project_Score,Participation_Score,Overall_Score,Status
+,Stu_ID,Atten_Percent,Assig_Sc,Mid_Sc,Final_Sc,Proj_Sc,Parti_Sc,Overall_Sc,Status
 0,STU202400001,85.93,60.76,70.91,70.9,72.88,72.84,68.86,Pass
 1,STU202400002,83.58,51.84,75.81,71.52,78.06,80.04,69.29,Pass
 2,STU202400003,81.84,41.83,38.96,52.38,61.85,71.51,50.39,Pass
