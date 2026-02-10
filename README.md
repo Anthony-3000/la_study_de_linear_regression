@@ -64,3 +64,5 @@ print(f"Final Weights: m={m}, c={c}")
 # Cost Function WRT to Itterations
 
 ![](./assets/single_feature_cost.png)
+
+# Student DataSet : Single Feature Model
