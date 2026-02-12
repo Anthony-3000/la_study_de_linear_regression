@@ -115,6 +115,47 @@ while True:
 print(f"Final W0: {W0}, Final W1: {W1}")
 ```
 
+```py
+# Model Training From Scratch - Gradient Descent
+features_len=len(features.columns)
+coefficient_vector=np.zeros(features_len)
+coefficient_history=[]
+
+learning_rate=0.00001
+
+def hypothesis(
+        coefficient_vector=None,
+        feature_vector=None
+        ):
+    # print(coefficient_vector)
+    # print(feature_vector)
+    return np.dot(coefficient_vector,feature_vector)
+    
+# for i in range(training_data_size):
+f_v=features.iloc[0].to_numpy()
+l_v=labels.iloc[0]
+# print(f_v)
+# print(l_v)
+# print(-1*learning_rate*(hypothesis(coefficient_vector,f_v)-l_v)*f_v[1])
+
+# training
+for i in range(training_data_size):
+    # itteratin through features
+    feature_v=features.iloc[i].to_numpy()
+    label_v=labels.iloc[i]
+    hypothesis_v=hypothesis(coefficient_vector,feature_v) # hpothesis
+    # print(coefficient_vector)
+    for fi in range(features_len):
+        cost=((hypothesis_v-l_v)*f_v[fi])*learning_rate
+        # update ith coefficient
+        # print(coefficient_vector[fi]+(((hypothesis_v-l_v)*f_v[fi])*learning_rate*-1))
+        coefficient_vector[fi]=coefficient_vector[fi]-(cost)
+    coefficient_history.append(coefficient_vector.copy())
+
+print(coefficient_history)
+
+```
+
 ### Cost Function wrt to itterations
 
 ![](./compiled/simple_regression_cost_function.png)
@@ -126,3 +167,4 @@ print(f"Final W0: {W0}, Final W1: {W1}")
 # Effects of High Learning Rate
 
 ![](./compiled/regression_evolution_simple_with_low_learning_rate.gif)
+
