@@ -70,6 +70,7 @@ plt.show()
 
 ![](./compiled/single_feature_training.gif)
 
+
 ```py
 ## our hyopthesis function is pre_y = w0+w1X
 
@@ -114,8 +115,24 @@ while True:
 
 print(f"Final W0: {W0}, Final W1: {W1}")
 ```
-
+![](./compiled/student_single_feature_training.gif)
 ```py
+# loading training data
+training_data_size=len(X)
+# features and lables
+features=pd.DataFrame({
+    "intercept Coeffecient":np.ones(training_data_size),
+    "feature 1":X
+})
+labels=Y
+
+
+# print features and labels
+print("Total Features",len(features))
+print(features)
+print("label")
+print("Label : ",type(labels),"length-",len(labels))
+print(labels.head())
 # Model Training From Scratch - Gradient Descent
 features_len=len(features.columns)
 coefficient_vector=np.zeros(features_len)
@@ -168,3 +185,71 @@ print(coefficient_history)
 
 ![](./compiled/regression_evolution_simple_with_low_learning_rate.gif)
 
+# Multi Feature Regression Model
+
+> Data Set Visualisation
+
+![](./compiled/student_multi_feature_dataset_plot.png)
+
+> Model Training Visulisation
+
+![](./compiled/student_multi_feature_training.gif)
+
+```py
+# loading training data
+training_data_size=len(X)
+# features and lables
+features=pd.DataFrame({
+    "intercept Coeffecient":np.ones(training_data_size),
+    "feature 1":X,
+    "Feature 2":X1
+})
+labels=Y
+
+
+# print features and labels
+print("Total Features",len(features))
+print(features)
+print("label")
+print("Label : ",type(labels),"length-",len(labels))
+print(labels.head())
+# Model Training From Scratch - Gradient Descent
+features_len=len(features.columns)
+coefficient_vector=np.zeros(features_len)
+coefficient_history=[]
+
+learning_rate=0.00001
+
+def hypothesis(
+        coefficient_vector=None,
+        feature_vector=None
+        ):
+    return np.dot(coefficient_vector,feature_vector)
+    
+# for i in range(training_data_size):
+f_v=features.iloc[0].to_numpy()
+l_v=labels.iloc[0]
+# print(f_v)
+# print(l_v)
+# print(-1*learning_rate*(hypothesis(coefficient_vector,f_v)-l_v)*f_v[1])
+
+# training
+for i in range(training_data_size):
+    # itteratin through features
+    feature_v=features.iloc[i].to_numpy()
+    label_v=labels.iloc[i]
+    hypothesis_v=hypothesis(coefficient_vector,feature_v) # hpothesis
+    # print(coefficient_vector)
+    # t_vector=np.zeros(len(coefficient_vector))
+    for fi in range(features_len):
+        cost=((hypothesis_v-l_v)*f_v[fi])*learning_rate
+        # update ith coefficient
+        # print("---------")
+        # print()
+        # print(coefficient_vector[fi]+(((hypothesis_v-l_v)*f_v[fi])*learning_rate*-1))
+        coefficient_vector[fi]=coefficient_vector[fi]-(cost)
+        # print(coefficient_vector[fi]-learning_rate*(((hypothesis_v)-l_v)*f_v[fi]))
+    coefficient_history.append(coefficient_vector.copy())
+
+print(coefficient_history)
+```
